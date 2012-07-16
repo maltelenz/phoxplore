@@ -24,21 +24,17 @@ class Camera(models.Model):
     
 
 class Photo(models.Model):
-    ORIENTATION_CHOICES = (
-        ('LS','Landscape'),
-        ('PT','Portrait'),
-    )
-    
     path = models.CharField(max_length = 10000)
     width = models.IntegerField()
     height = models.IntegerField()
-    exposure = models.IntegerField('Exposure in microseconds')
+    exposure_numerator = models.IntegerField('Exposure numerator')
+    exposure_denominator = models.IntegerField('Exposure denominator')
     iso = models.IntegerField('ISO speed')
-    orientation = models.CharField(max_length = 2, choices = ORIENTATION_CHOICES)
     taken_date = models.DateTimeField()
-    fileSize = models.IntegerField('File size in bytes')
+    file_size = models.IntegerField('File size in bytes')
     camera = models.ForeignKey(Camera)
     focal_length = models.IntegerField()
+    aperture = models.FloatField()
 
     class Meta:
         verbose_name = 'Photo'
