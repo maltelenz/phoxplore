@@ -47,3 +47,14 @@ class Photo(models.Model):
     def __unicode__(self):
         return self.path
 
+
+class SourceFolder(models.Model):
+    path = models.CharField(max_length = 10000)
+
+    class Meta:
+        verbose_name = 'Source folder'
+        verbose_name_plural = 'Source folders'
+
+    def __unicode__(self):
+        return self.path
+
