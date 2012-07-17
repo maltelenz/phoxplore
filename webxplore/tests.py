@@ -5,7 +5,7 @@ when you run "manage.py test".
 
 from django.test import TestCase
 
-from filexplore.im_handler import *
+from filexplore.file_handler import *
 
 class ImHandlerTest(TestCase):
     def test_image_filename_matching(self):

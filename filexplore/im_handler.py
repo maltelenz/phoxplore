@@ -1,18 +1,15 @@
 import Image
-import hashlib
 import os
-import re
 from time import strptime, mktime
 from datetime import datetime
 
 from PIL.ExifTags import TAGS
 
+from django.conf import settings
+
 from webxplore.models import Photo, Manufacturer, Camera
 
-# Compute a hopefully unique hash based on path,
-# used to save a thumbnail under.
-def file_name_hash(path):
-    return hashlib.sha224(path).hexdigest()
+from filexplore.file_handler import *
 
 # Create and save a thumbnail
 def make_thumbnail(im, outfile, size = (100, 100)):
@@ -24,7 +21,7 @@ def make_thumbnail(im, outfile, size = (100, 100)):
     return True
 
 # Create a thumbnail and a database entry for the image
-def import_image(path, thumb_path):
+def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
     # Check if it already exists
     try:
         ph = Photo.objects.get(path = path)
@@ -92,26 +89,14 @@ def import_image(path, thumb_path):
         focal_length = focal_length,
         aperture = aperture
     )
-    
+
     ph.save()
 
     return ph
 
-# Check if a given filename is a file phoxplore can handle
-def is_image_filename(filename):
-    return re.search(r'.[Jj][Pp][Ee]?[Gg]$', filename) != None
-
-# Give a list of images in given path and recursive subdirectories
-def images_in_folder(path):
-    all_files = []
-    for root, dirs, files in os.walk(path):
-        all_files += [os.path.join(root, f)
-                        for f in files
-                            if is_image_filename(f)]
-    return all_files
 
 # Import all images in a folder into phoxplore
-def import_folder(path, thumb_path):
+def import_folder(path, thumb_path = settings.THUMBNAIL_DIR):
     images = []
     for impath in images_in_folder(path):
         images.append(
