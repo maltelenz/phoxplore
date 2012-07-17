@@ -1,24 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{% extends "base.html" %}
 
-    <title></title>
-    <meta name="description" content="Phoxplore lets you explore your photo collection">
-    <meta name="author" content="Malte Lenz, www.maltelenz.com">
-
-    <meta name="viewport" content="width=device-width">
-
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+{% block content %}
     <h2>All photos</h2>
-    <div>
-        <a href="{% url logout %}">Log out</a>
-    </div>
     {% for p in all_photos %}
-        <div>{{p}}</div>
+        <div><a href="{% url photo p.pk %}">{{p}}</a></div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

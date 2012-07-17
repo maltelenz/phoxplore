@@ -6,6 +6,9 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'webxplore.views.index', name='home'),
+
+    url(r'^photo/(\d+)/$', 'webxplore.views.photo', name='photo'),
+
     url(r'^accounts/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'accounts/login.html'},
         name='login'
