@@ -6,6 +6,14 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'webxplore.views.index', name='home'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'accounts/login.html'},
+        name='login'
+    ),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+        {'template_name': 'accounts/logged_out.html'},
+        name='logout'
+    ),
     
     # url(r'^phoxplore/', include('phoxplore.webxplore.urls')),
 

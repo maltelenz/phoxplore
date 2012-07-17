@@ -14,8 +14,11 @@
 </head>
 <body>
     <h2>All photos</h2>
+    <div>
+        <a href="{% url logout %}">Log out</a>
+    </div>
     {% for p in all_photos %}
-        {{p}}
+        <div>{{p}}</div>
     {% endfor %}
 </body>
 </html>
