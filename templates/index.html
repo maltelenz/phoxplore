@@ -3,9 +3,12 @@
 {% block content %}
     <h2>All photos</h2>
         {% for p in all_photos %}
-            <div class="photothumb">
-                <a href="{% url photo p.pk %}"><img src="{{p.thumb_path}}" /></a>
-            </div>
+            <a class="photolink" href="{% url photo p.pk %}">
+                <div class="photothumb">
+                    <img src="{{p.thumb_path}}" />
+                    <div class="imdesc">{{p.file_name}}</div>
+                </div>
+            </a>
         {% endfor %}
     </table>
 {% endblock %}

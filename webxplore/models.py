@@ -50,6 +50,9 @@ class Photo(models.Model):
     def thumb_path(self):
         return settings.MEDIA_URL + file_name_hash(self.path) + ".jpg"
 
+    def file_name(self):
+        return os.path.basename(self.path)
+
 class SourceFolder(models.Model):
     path = models.CharField(max_length = 10000)
 

@@ -12,7 +12,7 @@ from webxplore.models import Photo, Manufacturer, Camera
 from filexplore.file_handler import *
 
 # Create and save a thumbnail
-def make_thumbnail(im, outfile, size = (100, 100)):
+def make_thumbnail(im, outfile, size = (200, 200)):
     try:
         im.thumbnail(size)
         im.save(outfile)
