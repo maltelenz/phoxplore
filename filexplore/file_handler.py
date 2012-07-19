@@ -8,9 +8,23 @@ def file_name_hash(path):
     return hashlib.sha224(path).hexdigest()
 
 
+# Construct part of a path for different view size thumbnails
+def thumb_sub_path(path):
+    return os.path.join('thumb', file_name_hash(path) + ".jpg")
+
+
+def medium_sub_path(path):
+    return os.path.join('medium', file_name_hash(path) + ".jpg")
+
+
+def large_sub_path(path):
+    return os.path.join('large', file_name_hash(path) + ".jpg")
+
+
 # Check if a given filename is a file phoxplore can handle
 def is_image_filename(filename):
     return re.search(r'.[Jj][Pp][Ee]?[Gg]$', filename) != None
+
 
 # Give a list of images in given path and recursive subdirectories
 def images_in_folder(path):

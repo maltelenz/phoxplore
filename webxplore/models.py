@@ -2,7 +2,7 @@ import os
 
 from django.db import models
 from django.conf import settings
-from filexplore.file_handler import file_name_hash
+from filexplore.file_handler import *
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length = 500)
@@ -48,7 +48,13 @@ class Photo(models.Model):
         return self.path
 
     def thumb_path(self):
-        return settings.MEDIA_URL + file_name_hash(self.path) + ".jpg"
+        return settings.MEDIA_URL + thumb_sub_path(self.path)
+
+    def medium_path(self):
+        return settings.MEDIA_URL + medium_sub_path(self.path)
+
+    def large_path(self):
+        return settings.MEDIA_URL + large_sub_path(self.path)
 
     def file_name(self):
         return os.path.basename(self.path)

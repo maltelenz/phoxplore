@@ -11,11 +11,11 @@ from webxplore.models import Photo, Manufacturer, Camera
 
 from filexplore.file_handler import *
 
-# Create and save a thumbnail
-def make_thumbnail(im, outfile, size = (200, 200)):
+# Create and save an image of given size
+def save_resized(im, outfile, size = (200, 200)):
     try:
-        im.thumbnail(size)
-        im.save(outfile)
+        im.thumbnail(size, Image.ANTIALIAS)
+        im.save(outfile, quality = 95)
     except IOError:
         return False
     return True
@@ -29,9 +29,6 @@ def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
     except Photo.DoesNotExist:
         # The photo is new, continue with importing
         pass
-
-    # Compute file name for thumbnail
-    outfile = os.path.join(thumb_path, file_name_hash(path) + ".jpg")
 
     # Collect various data about the image
     im = Image.open(path)
@@ -72,8 +69,23 @@ def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
 
     iso = exif_parsed['ISOSpeedRatings']
 
-    # Save the thumbnail
-    make_thumbnail(im, outfile)
+    # Compute file name for large size
+    largefile = os.path.join(thumb_path, large_sub_path(path))
+
+    # Save large view size
+    save_resized(im, largefile, (1000, 1000))
+
+    # Compute file name for medium size
+    mediumfile = os.path.join(thumb_path, medium_sub_path(path))
+
+    # Save medium view size
+    save_resized(im, mediumfile, (600, 600))
+
+    # Compute file name for thumbnail
+    thumbfile = os.path.join(thumb_path, thumb_sub_path(path))
+
+    # Save thumbnail
+    save_resized(im, thumbfile)
 
     # Save to database
     ph = Photo(
