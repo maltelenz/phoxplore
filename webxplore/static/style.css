@@ -23,6 +23,7 @@ a {
     clear: both;
     background-color: #DDD;
     border: 2px solid #999;
+    padding: 10px;
 }
 
 .toplinks a {
@@ -50,10 +51,19 @@ a.photolink {
     text-decoration: none;
 }
 
-.photothumb img {
-}
-
 .photothumb .imdesc {
     font-size: 11px;
     color: #777;
+}
+
+.photoview {
+    float: left;
+}
+
+.photoinfo {
+    float: right;
+}
+
+.floatclear {
+    clear: both;
 }

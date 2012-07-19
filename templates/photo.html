@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Details</h2>
-    <div>Path: {{photo.path}}</div>
-    <div>Size: {{photo.width}}x{{photo.height}}</div>
-    <div>Thumbnail: <img src="{{photo.thumb_path}}"></div>
+    <h2>{{photo.sub_path}}</h2>
+    <div class="photoview">
+        <img src="{{photo.thumb_path}}">
+    </div>
+    <div class="photoinfo">
+        <div>Path: {{photo.path}}</div>
+        <div>Size: {{photo.width}}x{{photo.height}}</div>
+    </div>
+    <div class="floatclear"></div>
 {% endblock %}
