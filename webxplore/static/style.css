@@ -1,0 +1,45 @@
+body {
+    background-color: #666;
+    font-family: Verdana;
+}
+
+h1 {
+    color: #DDD;
+    font-weight: normal;
+}
+h2 {
+    color: #DDD;
+    font-weight: normal;
+}
+
+a {
+    color: #222;
+}
+
+.contentpane {
+    background-color: #DDD;
+    border: 2px solid #999;
+}
+
+.toplinks a {
+    font-size: 12px;
+    color: #DDD;
+    font-weight: bold;
+}
+
+.photothumb {
+    width: 210px;
+    height: 210px;
+    display: inline-table;
+    border: 2px solid #666;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.photothumb a {
+}
+
+.photothumb img {
+}

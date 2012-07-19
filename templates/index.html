@@ -2,7 +2,10 @@
 
 {% block content %}
     <h2>All photos</h2>
-    {% for p in all_photos %}
-        <div><a href="{% url photo p.pk %}">{{p}}</a></div>
-    {% endfor %}
+        {% for p in all_photos %}
+            <div class="photothumb">
+                <a href="{% url photo p.pk %}"><img src="{{p.thumb_path}}" /></a>
+            </div>
+        {% endfor %}
+    </table>
 {% endblock %}
