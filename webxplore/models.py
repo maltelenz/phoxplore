@@ -59,6 +59,9 @@ class Photo(models.Model):
     def file_name(self):
         return os.path.basename(self.path)
 
+    def exposure(self):
+        return unicode(self.exposure_numerator) + "/" + unicode(self.exposure_denominator)
+
 class SourceFolder(models.Model):
     path = models.CharField(max_length = 10000)
 

@@ -1,13 +1,48 @@
 {% extends "base.html" %}
 
+{% load file_size %}
+
 {% block content %}
     <h2>{{photo.sub_path}}</h2>
     <div class="photoview">
         <img src="{{photo.medium_path}}">
     </div>
-    <div class="photoinfo">
-        <div>Path: {{photo.path}}</div>
-        <div>Size: {{photo.width}}x{{photo.height}}</div>
-    </div>
+    <table class="photoinfo">
+        <tr>
+            <td class="photoinfoitem">Path:</td>
+            <td class="photoinfodata">{{photo.path}}</td>
+        <tr>
+            <td class="photoinfoitem">Size:</td>
+            <td class="photoinfodata">{{photo.width}}x{{photo.height}}</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">Exposure:</td>
+            <td class="photoinfodata">{{photo.exposure}} s</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">Aperture:</td>
+            <td class="photoinfodata">f/{{photo.aperture}}</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">Focal length:</td>
+            <td class="photoinfodata">{{photo.focal_length}} mm</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">ISO:</td>
+            <td class="photoinfodata">{{photo.iso}}</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">Date:</td>
+            <td class="photoinfodata">{{photo.taken_date|date:"r"}}</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">File size:</td>
+            <td class="photoinfodata">{{photo.file_size|human_file_size}}</td>
+        </tr>
+        <tr>
+            <td class="photoinfoitem">Camera:</td>
+            <td class="photoinfodata">{{photo.camera.name}} ({{photo.camera.manufacturer.name}})</td>
+        </tr>
+    </table>
     <div class="floatclear"></div>
 {% endblock %}
