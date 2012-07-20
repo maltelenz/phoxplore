@@ -14,8 +14,9 @@ from filexplore.file_handler import *
 # Create and save an image of given size
 def save_resized(im, outfile, size = (200, 200)):
     try:
-        im.thumbnail(size, Image.ANTIALIAS)
-        im.save(outfile, quality = 95)
+        imcopy = im.copy()
+        imcopy.thumbnail(size, Image.ANTIALIAS)
+        imcopy.save(outfile, quality = 95)
     except IOError:
         return False
     return True
