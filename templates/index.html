@@ -1,7 +1,35 @@
 {% extends "base.html" %}
 
+{% block inheader %}
+    <script type="text/javascript">
+        $(function(){
+            $('#orderselect').on('change', function () {
+                var url = $(this).val();
+                if (url) {
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
-    <h2>All photos</h2>
+    <h2 class="indexsubheader">All photos</h2>
+    <div id="indexselectors">
+        Order by: <select id="orderselect">
+        {% for o, oname in possible_orders.items %}
+            <option
+                {% if o == ordering %} selected="selected"{% endif %}
+                value="?order={{o}}"
+            >
+                {{oname}}
+            </option>
+        {% endfor %}
+        </select>
+    </div>
+    <div class="floatclear"></div>
+
     {% for p in all_photos %}
         <a class="photolink" href="{% url photo p.pk %}">
             <div class="photothumb">
