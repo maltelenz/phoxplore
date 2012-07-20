@@ -31,7 +31,7 @@
     <div class="floatclear"></div>
 
     {% for p in all_photos %}
-        <a class="photolink" href="{% url photo p.pk %}">
+        <a class="photolink" href="{% url photo p.pk %}?order={{ordering}}">
             <div class="photothumb">
                 <img src="{{p.thumb_path}}" />
                 <div class="imdesc">{{p.file_name}}</div>
