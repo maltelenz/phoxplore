@@ -47,12 +47,12 @@
     <div class="floatclear"></div>
     {% if prev_id %}
         <span class="prevnextlink prevlink">
-            <a href="{% url photo prev_id %}?order={{ordering}}">&#171;</a>
+            <a href="{% url photo prev_id ordering %}?order={{ordering}}">&#171;</a>
         </span>
     {% endif %}
     {% if next_id %}
         <span class="prevnextlink nextlink">
-            <a href="{% url photo next_id %}?order={{ordering}}">&#187;</a>
+            <a href="{% url photo next_id ordering %}">&#187;</a>
         </span>
     {% endif %}
     <div class="floatclear"></div>

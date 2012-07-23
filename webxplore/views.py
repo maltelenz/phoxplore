@@ -7,12 +7,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from webxplore.views_helper import *
 
 @login_required
-def index(request):
-    (all_photos, ordering) = get_ordered_photos(request)
+def index(request, ordering, page):
+    all_photos = get_ordered_photos(ordering)
 
     paginator = Paginator(all_photos, 25)
-
-    page = request.GET.get('page')
 
     try:
         photos = paginator.page(page)
@@ -43,10 +41,10 @@ def index(request):
     )
 
 @login_required
-def photo(request, pk):
+def photo(request, pk, ordering):
     ph = get_object_or_404(Photo, pk = pk)
 
-    (all_photos, ordering) = get_ordered_photos(request)
+    all_photos = get_ordered_photos(ordering)
 
     id_list = list(all_photos.values_list('id', flat = True))
 

@@ -21,7 +21,7 @@
         {% for o, oname in possible_orders.items %}
             <option
                 {% if o == ordering %} selected="selected"{% endif %}
-                value="?order={{o}}"
+                value="{% url home o 1 %}"
             >
                 {{oname}}
             </option>
@@ -32,7 +32,7 @@
     </div>
     <div class="floatclear"></div>
     {% for p in photos %}
-        <a class="photolink" href="{% url photo p.pk %}?order={{ordering}}">
+        <a class="photolink" href="{% url photo p.pk ordering %}">
             <div class="photothumb">
                 <img src="{{p.thumb_path}}" />
                 <div class="imdesc">{{p.file_name}}</div>

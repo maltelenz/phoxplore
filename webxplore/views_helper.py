@@ -7,12 +7,7 @@ def possible_orderings():
             'focal': 'Focal length',
         }
 
-def get_order(request):
-    try:
-        ordering = request.GET['order']
-    except KeyError:
-        ordering = 'date'
-
+def get_order(ordering):
     orderdict = {
         'date': 'taken_date',
         'path': 'path',
@@ -23,12 +18,11 @@ def get_order(request):
         orderfield = orderdict[ordering]
     except KeyError:
         orderfield = 'taken_date'
-        ordering = 'date'
-    return (ordering, orderfield)
+    return orderfield
 
-def get_ordered_photos(request):
-    (ordering, orderfield) = get_order(request)
+def get_ordered_photos(ordering):
+    orderfield = get_order(ordering)
 
     all_photos = Photo.objects.all().order_by(orderfield)
 
-    return (all_photos, ordering)
+    return all_photos

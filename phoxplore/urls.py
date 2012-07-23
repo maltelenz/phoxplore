@@ -6,9 +6,9 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'webxplore.views.index', name='home'),
+    url(r'^index/(\w+)/(\d+)/$', 'webxplore.views.index', name='home'),
 
-    url(r'^photo/(\d+)/$', 'webxplore.views.photo', name='photo'),
+    url(r'^photo/(\d+)/(\w+)/$', 'webxplore.views.photo', name='photo'),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'accounts/login.html'},
