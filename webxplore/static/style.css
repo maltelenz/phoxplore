@@ -117,3 +117,11 @@ a.photolink {
     background: transparent;
     overflow: hidden;
 }
+
+.prevlink {
+    float: left;
+}
+
+.nextlink {
+    float: right;
+}
