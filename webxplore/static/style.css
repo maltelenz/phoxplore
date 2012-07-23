@@ -112,6 +112,10 @@ a.photolink {
     float: right;
 }
 
+.selectorseparation {
+    padding: 20px;
+}
+
 #orderselect {
     width: 100px;
     background: transparent;
@@ -135,4 +139,20 @@ a.photolink {
 
 .nextlink {
     float: right;
+}
+
+.pagination {
+    float: right;
+}
+
+.pagenr {
+    font-size: 12px;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #DDD;
+}
+
+.currentpagenr {
+    font-weight: bold;
+    background-color: #FEFEFE;
 }

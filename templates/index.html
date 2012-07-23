@@ -27,10 +27,11 @@
             </option>
         {% endfor %}
         </select>
+        <span class="selectorseparation">&nbsp</span>
+    {% include "pagination.html" %}
     </div>
     <div class="floatclear"></div>
-
-    {% for p in all_photos %}
+    {% for p in photos %}
         <a class="photolink" href="{% url photo p.pk %}?order={{ordering}}">
             <div class="photothumb">
                 <img src="{{p.thumb_path}}" />
@@ -38,4 +39,8 @@
             </div>
         </a>
     {% endfor %}
+
+    <div class="floatclear"></div>
+    {% include "pagination.html" %}
+    <div class="floatclear"></div>
 {% endblock %}
