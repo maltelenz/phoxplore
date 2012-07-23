@@ -6,17 +6,6 @@
     <h2>{{photo.sub_path}}</h2>
     <div class="photoview">
         <img src="{{photo.medium_path}}" />
-        <br />
-        {% if prev_id %}
-            <span class="prevlink">
-                <a href="{% url photo prev_id %}?order={{ordering}}">&#171;</a>
-            </span>
-        {% endif %}
-        {% if next_id %}
-            <span class="nextlink">
-                <a href="{% url photo next_id %}?order={{ordering}}">&#187;</a>
-            </span>
-        {% endif %}
     </div>
     <table class="photoinfo">
         <tr>
@@ -55,5 +44,16 @@
             <td class="photoinfodata">{{photo.camera.name}} ({{photo.camera.manufacturer.name}})</td>
         </tr>
     </table>
+    <div class="floatclear"></div>
+    {% if prev_id %}
+        <span class="prevnextlink prevlink">
+            <a href="{% url photo prev_id %}?order={{ordering}}">&#171;</a>
+        </span>
+    {% endif %}
+    {% if next_id %}
+        <span class="prevnextlink nextlink">
+            <a href="{% url photo next_id %}?order={{ordering}}">&#187;</a>
+        </span>
+    {% endif %}
     <div class="floatclear"></div>
 {% endblock %}

@@ -96,6 +96,10 @@ a.photolink {
 }
 
 .floatclear {
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
     clear: both;
 }
 
@@ -118,6 +122,11 @@ a.photolink {
 #orderselect option {
     background: transparent;
     overflow: hidden;
+}
+
+.prevnextlink a {
+    font-size: 40px;
+    text-decoration: none;
 }
 
 .prevlink {
