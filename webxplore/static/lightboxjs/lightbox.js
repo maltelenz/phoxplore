@@ -50,8 +50,8 @@ lightbox = new Lightbox options
     function LightboxOptions() {
       this.fileLoadingImage = '/static/lightboximages/loading.gif';
       this.fileCloseImage = '/static/lightboximages/close.png';
-      this.resizeDuration = 700;
-      this.fadeDuration = 500;
+      this.resizeDuration = 400;
+      this.fadeDuration = 400;
       this.labelImage = "Image";
       this.labelOf = "of";
     }
@@ -177,7 +177,7 @@ lightbox = new Lightbox options
         }
       }
       $window = $(window);
-      top = $window.scrollTop() + $window.height() / 10;
+      top = $window.scrollTop() + $window.height() / 25;
       left = $window.scrollLeft();
       $lightbox = $('#lightbox');
       $lightbox.css({
