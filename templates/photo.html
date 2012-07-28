@@ -5,7 +5,10 @@
 {% block content %}
     <h2>{{photo.sub_path}}</h2>
     <div class="photoview">
-        <img src="{{photo.medium_path}}" />
+        <a href="{{photo.large_path}}" rel="lightbox" title="{{photo.taken_date|date:"r"}} ({{photo.file_name}})">
+            <img src="{{photo.medium_path}}" />
+        </a>
+
     </div>
     <table class="photoinfo">
         <tr>
