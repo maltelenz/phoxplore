@@ -198,11 +198,24 @@ lightbox = new Lightbox options
       $('.loader').fadeIn('slow');
       $lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
       $lightbox.find('.lb-outerContainer').addClass('animating');
+      var windowHeight = $(window).height() * 0.85;
+      var windowWidth = $(window).width() * 0.9;
       preloader = new Image;
       preloader.onload = function() {
         $image.attr('src', _this.album[imageNumber].link);
-        $image.width = preloader.width;
-        $image.height = preloader.height;
+        var zoomWidth = 1;
+        var zoomHeight = 1;
+        if (preloader.width > windowWidth) {
+          zoomWidth = windowWidth/preloader.width;
+        }
+        if (preloader.height > windowHeight) {
+          zoomHeight = windowHeight/preloader.height;
+        }
+        var zoom = Math.min(zoomHeight, zoomWidth);
+        preloader.width = preloader.width * zoom;
+        preloader.height = preloader.height * zoom;
+        $image.css('width', preloader.width + "px");
+        $image.css('height', preloader.height + "px");
         return _this.sizeContainer(preloader.width, preloader.height);
       };
       preloader.src = this.album[imageNumber].link;
