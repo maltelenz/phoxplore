@@ -17,6 +17,7 @@
 {% block content %}
     <h2 class="indexsubheader">All photos</h2>
     <div id="indexselectors">
+        <!-- Ordering -->
         Order by: <select id="orderselect">
         {% for o, oname in possible_orders.items %}
             <option
@@ -27,8 +28,20 @@
             </option>
         {% endfor %}
         </select>
+        
         <span class="selectorseparation">&nbsp</span>
-    {% include "pagination.html" %}
+        
+        <!-- Slideshow setup -->
+        <a href="{{all_photos.0.large_path}}" rel="lightbox[allphotos]" title="{{all_photos.0.taken_date|date:"r"}} ({{all_photos.0.file_name}})">
+            Slideshow
+        </a>
+        {% for p in all_photos|slice:"1:" %}
+            <a href="{{p.large_path}}" rel="lightbox[allphotos]" title="{{p.taken_date|date:"r"}} ({{p.file_name}})" style="display: none;"></a>
+        {% endfor %}
+        
+        <span class="selectorseparation">&nbsp</span>
+        
+        {% include "pagination.html" %}
     </div>
     <div class="floatclear"></div>
     {% for p in photos %}

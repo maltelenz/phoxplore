@@ -33,6 +33,7 @@ def index(request, ordering, page):
 
     return render_to_response('index.html', {
         'photos': photos,
+        'all_photos': all_photos,
         'ordering': ordering,
         'possible_orders': possible_orders,
         'pagination_range': pagination_range,
