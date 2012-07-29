@@ -4,15 +4,6 @@ Phoxplore dev notes
 Features
 --------
 
-* Keep database of image information
-	- exif
-	- original location
-	- ...
-
-* Keep thumbnails
-
-* Authorized people only
-
 * Asynchronously start a scan of image folder
 	- With ajax progress checker
 
