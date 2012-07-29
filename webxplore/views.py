@@ -50,28 +50,43 @@ def photo(request, pk, ordering):
 
     idx = id_list.index(int(pk))
 
+    total = len(id_list)
+    nrprev = idx
+    nrnext = total - idx - 1
+
+    first_id = id_list[0]
+    last_id = id_list[-1]
+
+    next = None
     try:
         next_id = id_list[idx + 1]
+        next = Photo.objects.get(pk = next_id)
     except IndexError:
         next_id = None
 
+    prev = None
     if idx > 0: #Avoid negative indexing
         try:
             prev_id = id_list[idx - 1]
+            prev = Photo.objects.get(pk = prev_id)
         except IndexError:
             prev_id = None
     else:
         prev_id = None
 
-    # next = Photo.objects.get(pk = next_id)
-    # prev = Photo.objects.get(pk = prev_id)
 
 
     return render_to_response('photo.html', {
             'photo': ph,
             'prev_id': prev_id,
             'next_id': next_id,
+            'first_id': first_id,
+            'last_id': last_id,
+            'next': next,
+            'prev': prev,
             'ordering': ordering,
+            'nrnext': nrnext,
+            'nrprev': nrprev,
         },
         context_instance = RequestContext(request)
     )

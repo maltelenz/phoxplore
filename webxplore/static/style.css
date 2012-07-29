@@ -73,17 +73,76 @@ a.photolink {
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    width: 600px;
 }
 
 .photoview img {
     box-shadow: 0px 0px 7px #888;
 }
 
-.photoinfo {
+.rightcolumn {
     float: left;
+    margin-left: 20px;
+}
+
+.photonav {
+    height: 200px;
+}
+
+.textnavlink {
+    font-size: 40px;
+    color: #000;
+    vertical-align: 50px;
+}
+
+.photonavlink {
+    display: inline-block;
+    padding: 0px;
+    position: relative;
+}
+
+.photonavlink a img {
+    border: 1px solid #000;
+}
+
+.photonavlink a .imgoverlay {
+    vertical-align: middle;
+    font-size: 40px;
+    color: #EEE;
+}
+
+.photonavlink a .prev {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+}
+
+.photonavlink a .next {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+}
+
+.nrnav {
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.photonavlink a {
+    opacity: 0.6;
+}
+
+.photonavlink a:hover {
+    opacity: 1;
+}
+
+.photonav a {
+    text-decoration: none;
+}
+
+.photoinfo {
     font-size: 12px;
     line-height: 175%;
-    margin-left: 20px;
 }
 
 .photoinfoitem {
@@ -126,19 +185,6 @@ a.photolink {
 #orderselect option {
     background: transparent;
     overflow: hidden;
-}
-
-.prevnextlink a {
-    font-size: 40px;
-    text-decoration: none;
-}
-
-.prevlink {
-    float: left;
-}
-
-.nextlink {
-    float: right;
 }
 
 .pagination {

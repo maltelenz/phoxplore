@@ -10,53 +10,65 @@
         </a>
 
     </div>
-    <table class="photoinfo">
-        <tr>
-            <td class="photoinfoitem">Path:</td>
-            <td class="photoinfodata">{{photo.path}}</td>
-        <tr>
-            <td class="photoinfoitem">Size:</td>
-            <td class="photoinfodata">{{photo.width}}x{{photo.height}}</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">Exposure:</td>
-            <td class="photoinfodata">{{photo.exposure}} s</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">Aperture:</td>
-            <td class="photoinfodata">f/{{photo.aperture}}</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">Focal length:</td>
-            <td class="photoinfodata">{{photo.focal_length}} mm</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">ISO:</td>
-            <td class="photoinfodata">{{photo.iso}}</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">Date:</td>
-            <td class="photoinfodata">{{photo.taken_date|date:"r"}}</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">File size:</td>
-            <td class="photoinfodata">{{photo.file_size|human_file_size}}</td>
-        </tr>
-        <tr>
-            <td class="photoinfoitem">Camera:</td>
-            <td class="photoinfodata">{{photo.camera.name}} ({{photo.camera.manufacturer.name}})</td>
-        </tr>
-    </table>
-    <div class="floatclear"></div>
-    {% if prev_id %}
-        <span class="prevnextlink prevlink">
-            <a href="{% url photo prev_id ordering %}?order={{ordering}}">&#171;</a>
-        </span>
-    {% endif %}
-    {% if next_id %}
-        <span class="prevnextlink nextlink">
-            <a href="{% url photo next_id ordering %}">&#187;</a>
-        </span>
-    {% endif %}
+
+    <div class="rightcolumn">
+        <table class="photoinfo">
+            <tr>
+                <td class="photoinfoitem">Path:</td>
+                <td class="photoinfodata">{{photo.path}}</td>
+            <tr>
+                <td class="photoinfoitem">Size:</td>
+                <td class="photoinfodata">{{photo.width}}x{{photo.height}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Exposure:</td>
+                <td class="photoinfodata">{{photo.exposure}} s</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Aperture:</td>
+                <td class="photoinfodata">f/{{photo.aperture}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Focal length:</td>
+                <td class="photoinfodata">{{photo.focal_length}} mm</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">ISO:</td>
+                <td class="photoinfodata">{{photo.iso}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Date:</td>
+                <td class="photoinfodata">{{photo.taken_date|date:"r"}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">File size:</td>
+                <td class="photoinfodata">{{photo.file_size|human_file_size}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Camera:</td>
+                <td class="photoinfodata">{{photo.camera.name}} ({{photo.camera.manufacturer.name}})</td>
+            </tr>
+        </table>
+        <div class="photonav">
+            {% if prev_id %}
+                <a href="{% url photo first_id ordering %}" class="textnavlink">&#171;</a>
+                <span class="photonavlink">
+                    <a href="{% url photo prev_id ordering %}">
+                        <img src="{{prev.thumb_path}}" />
+                        <span class="imgoverlay prev">&#171;<span class="nrnav">({{nrprev}})</span></span>
+                    </a>
+                </span>
+            {% endif %}
+            {% if next_id %}
+                <span class="photonavlink">
+                    <a href="{% url photo next_id ordering %}">
+                        <div class="imgoverlay next"><span class="nrnav">({{nrnext}})</span>&#187;</div>
+                        <img src="{{next.thumb_path}}" />
+                    </a>
+                </span>
+                <a href="{% url photo last_id ordering %}" class="textnavlink">&#187;</a>
+            {% endif %}
+        </div>
+    </div>
     <div class="floatclear"></div>
 {% endblock %}
