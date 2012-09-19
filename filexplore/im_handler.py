@@ -3,7 +3,7 @@ import os
 from time import strptime, mktime
 from datetime import datetime
 
-from PIL.ExifTags import TAGS
+from ExifTags import TAGS
 
 from django.conf import settings
 
