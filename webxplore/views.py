@@ -7,8 +7,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from webxplore.views_helper import *
 
 @login_required
-def index(request, ordering, page):
-    all_photos = get_ordered_photos(ordering)
+def index(request, selection, ordering, page):
+    all_photos = get_ordered_photos(selection, ordering)
 
     paginator = Paginator(all_photos, 25)
 
@@ -31,21 +31,31 @@ def index(request, ordering, page):
         range(page_i - 2, page_i + 2) + [1] + [paginator.num_pages]
     )]
 
+    possible_folders = SourceFolder.objects.all()
+
+    if selection.isdigit():
+        selectionname = SourceFolder.objects.get(id = selection).name
+    else:
+        selectionname = "All"
+
     return render_to_response('index.html', {
         'photos': photos,
         'all_photos': all_photos,
         'ordering': ordering,
+        'selection': selection,
+        'selectionname': selectionname,
         'possible_orders': possible_orders,
         'pagination_range': pagination_range,
+        'possible_folders': possible_folders,
         },
         context_instance = RequestContext(request)
     )
 
 @login_required
-def photo(request, pk, ordering):
+def photo(request, pk, selection, ordering):
     ph = get_object_or_404(Photo, pk = pk)
 
-    all_photos = get_ordered_photos(ordering)
+    all_photos = get_ordered_photos(selection, ordering)
 
     id_list = list(all_photos.values_list('id', flat = True))
 
@@ -86,6 +96,7 @@ def photo(request, pk, ordering):
             'next': next,
             'prev': prev,
             'ordering': ordering,
+            'selection': selection,
             'nrnext': nrnext,
             'nrprev': nrprev,
         },

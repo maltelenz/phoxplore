@@ -11,18 +11,47 @@
                 return false;
             });
         });
+        $(function(){
+            $('#folderselect').on('change', function () {
+                var url = $(this).val();
+                if (url) {
+                    window.location = url;
+                }
+                return false;
+            });
+        });
     </script>
 {% endblock %}
 
 {% block content %}
-    <h2 class="indexsubheader">All photos</h2>
+    <h2 class="indexsubheader">Photos: {{selectionname}}</h2>
     <div id="indexselectors">
+        <!-- Selection -->
+        Show: <select id="folderselect">
+        <option
+            {% if selection == "all" %} selected="selected"{% endif %}
+            value="{% url home "all" ordering 1 %}"
+        >
+            All photos
+        </option>
+        {% for f in possible_folders %}
+            <option
+                {% if f.id|stringformat:"s" == selection %} selected="selected"{% endif %}
+                value="{% url home f.id ordering 1 %}"
+            >
+                {{f.name}}
+            </option>
+        {% endfor %}
+        </select>
+        
+        <span class="selectorseparation">&nbsp</span>
+       
         <!-- Ordering -->
         Order by: <select id="orderselect">
         {% for o, oname in possible_orders.items %}
             <option
                 {% if o == ordering %} selected="selected"{% endif %}
-                value="{% url home o 1 %}"
+                value="{% url home selection o 1 %}"
             >
                 {{oname}}
             </option>
@@ -45,7 +74,7 @@
     </div>
     <div class="floatclear"></div>
     {% for p in photos %}
-        <a class="photolink" href="{% url photo p.pk ordering %}">
+        <a class="photolink" href="{% url photo p.pk selection ordering %}">
             <div class="photothumb">
                 <img src="{{p.thumb_path}}" />
                 <div class="imdesc">{{p.file_name}}</div>

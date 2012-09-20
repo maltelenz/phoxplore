@@ -27,8 +27,21 @@ class Camera(models.Model):
         return self.manufacturer + ": " + self.name
     
 
+class SourceFolder(models.Model):
+    path = models.CharField(max_length = 10000)
+    name = models.CharField(max_length = 200)
+
+    class Meta:
+        verbose_name = 'Source folder'
+        verbose_name_plural = 'Source folders'
+
+    def __unicode__(self):
+        return self.name + " -> " + self.path
+
+
 class Photo(models.Model):
     path = models.CharField(max_length = 10000)
+    source_folder = models.ForeignKey(SourceFolder)
     width = models.IntegerField()
     height = models.IntegerField()
     exposure_numerator = models.IntegerField('Exposure numerator')
@@ -61,14 +74,4 @@ class Photo(models.Model):
 
     def exposure(self):
         return unicode(self.exposure_numerator) + "/" + unicode(self.exposure_denominator)
-
-class SourceFolder(models.Model):
-    path = models.CharField(max_length = 10000)
-
-    class Meta:
-        verbose_name = 'Source folder'
-        verbose_name_plural = 'Source folders'
-
-    def __unicode__(self):
-        return self.path
 

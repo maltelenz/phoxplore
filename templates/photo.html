@@ -3,7 +3,7 @@
 {% load file_size %}
 
 {% block content %}
-    <h2>{{photo.sub_path}}</h2>
+    <h2>{{photo.source_folder.name}} - {{photo.file_name}}</h2>
     <div class="photoview">
         <a href="{{photo.large_path}}" rel="lightbox" title="{{photo.taken_date|date:"r"}} ({{photo.file_name}})">
             <img src="{{photo.medium_path}}" />
@@ -51,9 +51,9 @@
         </table>
         <div class="photonav">
             {% if prev_id %}
-                <a href="{% url photo first_id ordering %}" class="textnavlink">&#171;</a>
+                <a href="{% url photo first_id selection ordering %}" class="textnavlink">&#171;</a>
                 <span class="photonavlink">
-                    <a href="{% url photo prev_id ordering %}">
+                    <a href="{% url photo prev_id selection ordering %}">
                         <img src="{{prev.thumb_path}}" />
                         <span class="imgoverlay prev">&#171;<span class="nrnav">({{nrprev}})</span></span>
                     </a>
@@ -61,12 +61,12 @@
             {% endif %}
             {% if next_id %}
                 <span class="photonavlink">
-                    <a href="{% url photo next_id ordering %}">
+                    <a href="{% url photo next_id selection ordering %}">
                         <div class="imgoverlay next"><span class="nrnav">({{nrnext}})</span>&#187;</div>
                         <img src="{{next.thumb_path}}" />
                     </a>
                 </span>
-                <a href="{% url photo last_id ordering %}" class="textnavlink">&#187;</a>
+                <a href="{% url photo last_id selection ordering %}" class="textnavlink">&#187;</a>
             {% endif %}
         </div>
     </div>

@@ -1,4 +1,4 @@
-from webxplore.models import Photo, Camera, Manufacturer
+from webxplore.models import Photo, Camera, Manufacturer, SourceFolder
 
 def possible_orderings():
     return {
@@ -20,9 +20,14 @@ def get_order(ordering):
         orderfield = 'taken_date'
     return orderfield
 
-def get_ordered_photos(ordering):
+def get_selection(selection, photos):
+    if selection.isdigit():
+        return photos.filter(source_folder__id = int(selection))
+    return photos
+
+def get_ordered_photos(selection, ordering):
     orderfield = get_order(ordering)
 
-    all_photos = Photo.objects.all().order_by(orderfield)
+    selection_photos = get_selection(selection, Photo.objects.all()).order_by(orderfield)
 
-    return all_photos
+    return selection_photos

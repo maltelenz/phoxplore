@@ -9,11 +9,7 @@ Features
 
 * Folder based browsing
 
-* Date based browsing
-
 * Filter based browsing (by exif data points)
-
-* Slideshow
 
 
 Possible features

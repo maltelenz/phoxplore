@@ -1,17 +1,17 @@
 <div class="pagination">
     <span class="step-links">
         {% if photos.has_previous %}
-            <a href="{% url home ordering photos.previous_page_number %}">&#171;</a>
+            <a href="{% url home selection ordering photos.previous_page_number %}">&#171;</a>
         {% endif %}
         {% for p in pagination_range %}
             {% if p == photos.number %}
                 <span class="pagenr currentpagenr">{{p}}</span>
             {% else %}
-                <a href="{% url home ordering p %}"><span class="pagenr">{{p}}</span></a>
+                <a href="{% url home selection ordering p %}"><span class="pagenr">{{p}}</span></a>
             {% endif %}
         {% endfor %}
         {% if photos.has_next %}
-            <a href="{% url home ordering photos.next_page_number %}">&#187;</a>
+            <a href="{% url home selection ordering photos.next_page_number %}">&#187;</a>
         {% endif %}
     </span>
 </div>

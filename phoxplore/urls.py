@@ -7,11 +7,11 @@ from django.views.generic import RedirectView
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', RedirectView.as_view(url='/index/date/1/')),
+    url(r'^$', RedirectView.as_view(url='/index/all/date/1/')),
 
-    url(r'^index/(\w+)/(\d+)/$', 'webxplore.views.index', name='home'),
+    url(r'^index/(\w*)/(\w+)/(\d+)/$', 'webxplore.views.index', name='home'),
 
-    url(r'^photo/(\d+)/(\w+)/$', 'webxplore.views.photo', name='photo'),
+    url(r'^photo/(\d+)/(\w*)/(\w+)/$', 'webxplore.views.photo', name='photo'),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'accounts/login.html'},

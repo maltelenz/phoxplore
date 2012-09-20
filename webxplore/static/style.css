@@ -176,14 +176,14 @@ a.photolink {
     padding: 20px;
 }
 
-#orderselect {
+#orderselect, #folderselect {
     width: 100px;
     background: transparent;
     padding: 3px;
     border: 1px solid #BBB;
 }
 
-#orderselect option {
+#orderselect option, #folderselect option {
     background: transparent;
     overflow: hidden;
 }

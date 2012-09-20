@@ -7,7 +7,7 @@ from ExifTags import TAGS
 
 from django.conf import settings
 
-from webxplore.models import Photo, Manufacturer, Camera
+from webxplore.models import Photo, Manufacturer, Camera, SourceFolder
 
 from filexplore.file_handler import *
 
@@ -22,7 +22,7 @@ def save_resized(im, outfile, size = (200, 200)):
     return True
 
 # Create a thumbnail and a database entry for the image
-def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
+def import_image(path, source_folder, thumb_path = settings.THUMBNAIL_DIR):
     # Check if it already exists
     try:
         ph = Photo.objects.get(path = path)
@@ -91,6 +91,7 @@ def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
     # Save to database
     ph = Photo(
         path = path,
+        source_folder = source_folder,
         width = width,
         height = height,
         exposure_numerator = exposure_numerator,
@@ -109,11 +110,19 @@ def import_image(path, thumb_path = settings.THUMBNAIL_DIR):
 
 
 # Import all images in a folder into phoxplore
-def import_folder(path, thumb_path = settings.THUMBNAIL_DIR):
+def import_folder(path, name = None, thumb_path = settings.THUMBNAIL_DIR):
     images = []
+
+    if name is None:
+        name = path
+
+    source_folder = SourceFolder(path = path, name = name)
+
+    source_folder.save()
+
     for impath in images_in_folder(path):
         images.append(
-            import_image(impath, thumb_path)
+            import_image(impath, source_folder, thumb_path)
         )
 
     return images
