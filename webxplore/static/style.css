@@ -68,6 +68,14 @@ a.photolink {
     color: #777;
 }
 
+.photosubheader {
+    padding-left: 20px;
+}
+
+.photosubheader a {
+    color: #777;
+}
+
 .photoview {
     float: left;
     margin-left: 20px;
@@ -165,6 +173,7 @@ a.photolink {
 
 .indexsubheader {
     float: left;
+    padding-left: 20px;
 }
 
 #indexselectors {

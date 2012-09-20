@@ -3,7 +3,7 @@
 {% load file_size %}
 
 {% block content %}
-    <h2>{{photo.source_folder.name}} - {{photo.file_name}}</h2>
+    <h2 class="photosubheader"><a href="{% url home selection ordering 1 %}">{{photo.source_folder.name}}</a> &#187; {{photo.file_name}}</h2>
     <div class="photoview">
         <a href="{{photo.large_path}}" rel="lightbox" title="{{photo.taken_date|date:"r"}} ({{photo.file_name}})">
             <img src="{{photo.medium_path}}" />
@@ -14,13 +14,6 @@
     <div class="rightcolumn">
         <table class="photoinfo">
             <tr>
-                <td class="photoinfoitem">Path:</td>
-                <td class="photoinfodata">{{photo.path}}</td>
-            <tr>
-                <td class="photoinfoitem">Size:</td>
-                <td class="photoinfodata">{{photo.width}}x{{photo.height}}</td>
-            </tr>
-            <tr>
                 <td class="photoinfoitem">Exposure:</td>
                 <td class="photoinfodata">{{photo.exposure}} s</td>
             </tr>
@@ -29,12 +22,12 @@
                 <td class="photoinfodata">f/{{photo.aperture}}</td>
             </tr>
             <tr>
-                <td class="photoinfoitem">Focal length:</td>
-                <td class="photoinfodata">{{photo.focal_length}} mm</td>
-            </tr>
-            <tr>
                 <td class="photoinfoitem">ISO:</td>
                 <td class="photoinfodata">{{photo.iso}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Focal length:</td>
+                <td class="photoinfodata">{{photo.focal_length}} mm</td>
             </tr>
             <tr>
                 <td class="photoinfoitem">Date:</td>
@@ -47,6 +40,14 @@
             <tr>
                 <td class="photoinfoitem">Camera:</td>
                 <td class="photoinfodata">{{photo.camera.name}} ({{photo.camera.manufacturer.name}})</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Size:</td>
+                <td class="photoinfodata">{{photo.width}}x{{photo.height}}</td>
+            </tr>
+            <tr>
+                <td class="photoinfoitem">Path:</td>
+                <td class="photoinfodata">{{photo.path}}</td>
             </tr>
         </table>
         <div class="photonav">
