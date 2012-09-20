@@ -85,6 +85,10 @@ def photo(request, pk, selection, ordering):
     else:
         prev_id = None
 
+    if selection.isdigit():
+        selectionname = SourceFolder.objects.get(id = selection).name
+    else:
+        selectionname = "All"
 
 
     return render_to_response('photo.html', {
@@ -97,6 +101,7 @@ def photo(request, pk, selection, ordering):
             'prev': prev,
             'ordering': ordering,
             'selection': selection,
+            'selectionname': selectionname,
             'nrnext': nrnext,
             'nrprev': nrprev,
         },

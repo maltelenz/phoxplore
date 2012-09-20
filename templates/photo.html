@@ -3,7 +3,7 @@
 {% load file_size %}
 
 {% block content %}
-    <h2 class="photosubheader"><a href="{% url home selection ordering 1 %}">{{photo.source_folder.name}}</a> &#187; {{photo.file_name}}</h2>
+    <h2 class="photosubheader"><a href="{% url home selection ordering 1 %}">{{selectionname}}</a> &#187; {{photo.file_name}}</h2>
     <div class="photoview">
         <a href="{{photo.large_path}}" rel="lightbox" title="{{photo.taken_date|date:"r"}} ({{photo.file_name}})">
             <img src="{{photo.medium_path}}" />
