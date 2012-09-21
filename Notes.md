@@ -7,8 +7,6 @@ Features
 * Asynchronously start a scan of image folder
 	- With ajax progress checker
 
-* Folder based browsing
-
 * Filter based browsing (by exif data points)
 
 
